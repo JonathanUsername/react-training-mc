@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Project boilerplate",
   "scripts": {
-    "start": "webpack-dev-server --content-base build/"
+    "start": "webpack-dev-server --hot --inline --content-base build/"
   },
   "dependencies": {
     "babel-core": "^6.21.0",
