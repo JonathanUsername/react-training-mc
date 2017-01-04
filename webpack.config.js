@@ -19,6 +19,9 @@ var loaders = [
   {
     "test": /\.html?$/,
     "loader": "raw"
+  },
+  { "test": /\.json$/,
+    "loader": "json"
   }
 ];
 

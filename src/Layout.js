@@ -1,8 +1,10 @@
 import React from 'react';
 import * as components from './HelloWorld';
 import source from '!!raw-loader!./HelloWorld';
+import intro from '!!raw-loader!./intro.md';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/styles';
+import ReactMarkdown from 'react-markdown';
 
 
 const Section = props => {
@@ -15,6 +17,8 @@ const Section = props => {
     </SyntaxHighlighter>
   );
 };
+
+const CodeBlock = props => <SyntaxHighlighter style={docco} language='javascript'>{props.literal}</SyntaxHighlighter>;
 
 class Separator extends React.Component {
   state = { open: true};
@@ -39,6 +43,7 @@ class Layout extends React.Component {
     const arr = Object.keys(components).map(i => components[i]);
     return (
       <div>
+        <ReactMarkdown source={intro} softBreak={'br'} containerProps={{style: {padding: '20px'}}} renderers={{CodeBlock: CodeBlock, Code: CodeBlock}} />
         {arr.map((Component, idx) => (
           <div key={idx}>
             <h3>Part {idx} - {Component.name || "Wrapped Component"}</h3>
