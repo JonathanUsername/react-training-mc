@@ -31,7 +31,7 @@ const Component = data => <div>Hello {data.name}!</div>;
 
 A Higher Order *Function* is one that returns a new function:
 ```
-const wrapResultInStars = function(func) {
+const wrapInputInStars = function(func) {
 	return function(data) {
 		return func('*' + data + '*');
 	}
@@ -39,15 +39,15 @@ const wrapResultInStars = function(func) {
 const upperString = function(str) {
 	return str.toUpperCase();
 }
-const importantify = star(upper)
-importantify('jon') // "*JON*"
+const importantify = wrapInputInStars(upperString);
+importantify('jon'); // "*JON*"
 ```
 ```
 // Or, more succinctly, using arrow functions:
-const wrapResultInStars = func => data => func('*' + data + '*');
+const wrapInputInStars = func => data => func('*' + data + '*');
 const upperString = str => str.toUpperCase();
-const importantify = star(upper)
-importantify('jon') // "*JON*"
+const importantify = wrapInputInStars(upperString);
+importantify('jon'); // "*JON*"
 ```
 
 A Higher Order *Component* is one that returns a new component:
