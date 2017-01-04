@@ -34,6 +34,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve('src', 'index.tpl.html'),
       inject: 'body',
+      title: 'MC React Training',
+	  favicon: path.resolve('src', 'favicon.ico'),
       filename: 'index.html'
     })
   ],

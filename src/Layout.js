@@ -37,7 +37,6 @@ class Separator extends React.Component {
 class Layout extends React.Component {
   render() {
     const arr = Object.keys(components).map(i => components[i]);
-    
     return (
       <div>
         {arr.map((Component, idx) => (
