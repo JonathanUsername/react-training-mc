@@ -4,9 +4,20 @@ import AboutReact from './aboutReact';
 import Es6 from './Es6.js';
 import Redux from './redux.js';
 import Form from './forms.js';
+import source from '!!raw-loader!./main.js';
 import { Router, Route, Link, browserHistory } from 'react-router'
 
 class App extends Component {
+    state = {
+        showSource: false
+    };
+
+    showSource = () => {
+        this.setState({showSource: !this.state.showSource}, () => {
+            Prism.highlightAll();
+        });
+    };
+
     render(){
         return (
             <div>
@@ -31,6 +42,16 @@ class App extends Component {
                         </h1>
                         <div style={{marginTop: 50}}>
                             <img src="http://www.allenpike.com/images/2015/cube-drone-angular.jpg" />
+                        </div>
+                        <div style={{maxWidth: '100%'}} onClick={this.showSource}>
+                            Toggle source?
+                            {this.state.showSource &&
+                                <pre>
+                                    <code className="language-javascript">
+                                      {source}
+                                    </code>
+                                </pre>
+                            }
                         </div>
                     </div>
                 }
