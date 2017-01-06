@@ -18,9 +18,9 @@ const Section = props => {
   );
 };
 
-const CodeBlock = props => <SyntaxHighlighter style={docco} language='javascript'>{props.literal}</SyntaxHighlighter>;
+export const CodeBlock = props => <SyntaxHighlighter style={docco} language='javascript'>{props.literal}</SyntaxHighlighter>;
 
-class Separator extends React.Component {
+export class Separator extends React.Component {
   state = { open: true};
   toggle = () => this.setState({open: !this.state.open});
   render() {
@@ -43,7 +43,7 @@ class Layout extends React.Component {
     const arr = Object.keys(components).map(i => components[i]);
     return (
       <div>
-        <ReactMarkdown source={intro} softBreak={'br'} containerProps={{style: {padding: '20px'}}} renderers={{CodeBlock: CodeBlock, Code: CodeBlock}} />
+        <ReactMarkdown source={intro} softBreak={'br'} containerProps={{style: {padding: '20px'}}} renderers={{CodeBlock: CodeBlock}} />
         {arr.map((Component, idx) => (
           <div key={idx}>
             <h3>Part {idx} - {Component.name || "Wrapped Component"}</h3>
