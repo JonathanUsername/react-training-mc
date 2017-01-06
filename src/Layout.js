@@ -2,8 +2,6 @@ import React from 'react';
 import * as components from './HelloWorld';
 import source from '!!raw-loader!./HelloWorld';
 import intro from '!!raw-loader!./intro.md';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/styles';
 import ReactMarkdown from 'react-markdown';
 
 
@@ -12,13 +10,21 @@ const Section = props => {
   const last = source.indexOf(`PART${props.idx + 1}`) - 4;
   const code = source.substring(first, last);
   return (
-    <SyntaxHighlighter style={docco} language='javascript'>
-      {code}
-    </SyntaxHighlighter>
+      <pre>
+          <code className="language-javascript">
+            {code}
+          </code>
+      </pre>
   );
 };
 
-export const CodeBlock = props => <SyntaxHighlighter style={docco} language='javascript'>{props.literal}</SyntaxHighlighter>;
+export const CodeBlock = props => (
+    <pre>
+        <code className="language-javascript">
+          {props.literal}
+        </code>
+    </pre>
+);
 
 export class Separator extends React.Component {
   state = { open: true};
@@ -49,7 +55,7 @@ class Layout extends React.Component {
             <h3>Part {idx} - {Component.name || "Wrapped Component"}</h3>
             <div>
               <div style={{border: 'solid #ddd', padding: '5px 20px'}}>
-                <Component key={idx} {...this.props} />
+                <Component key={idx} {...this.props.route} />
               </div>
             </div>
             <div>

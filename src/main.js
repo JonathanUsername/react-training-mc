@@ -17,10 +17,10 @@ const data = {
 render(
     <Router history={browserHistory}>
         <Route {...data}  path="/" component={Layout}/>
-        <Route path="/es6" component={Es6}/>
-        <Route path="/redux" component={Redux}/>
-        <Route path="/forms" component={Form}/>
-        <Route path="/forms2" component={Form2}/>
-        <Route path="*" component={() => <div>404 NOPE!</div>}/>
+        <Route {...data} path="/es6" component={Es6}/>
+        <Route {...data} path="/redux" component={Redux}/>
+        <Route {...data} path="/forms" component={Form}/>
+        <Route {...data} path="/forms2" component={Form2}/>
+        <Route {...data} path="*" component={() => <div>404 NOPE!</div>}/>
     </Router>
 , document.querySelector('#app'));

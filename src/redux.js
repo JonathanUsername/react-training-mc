@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStore, bindActionCreators } from 'redux';
 import source from '!!raw-loader!./redux.js';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/styles';
 import { Provider as ReduxProvider } from 'react-redux'
 
 const counter = (state = {count: 0}, action) => {
@@ -38,9 +36,11 @@ var Counter = props => (
             <pre>
                 {JSON.stringify(props.state)}
             </pre>
-            <SyntaxHighlighter style={docco} language='javascript'>
-              {source}
-            </SyntaxHighlighter>
+            <pre>
+                <code className="language-javascript">
+                  {source}
+                </code>
+            </pre>
         </div>
     </div>
 );

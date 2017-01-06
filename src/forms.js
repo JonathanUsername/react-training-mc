@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { createStore, bindActionCreators, combineReducers } from 'redux';
 import source from '!!raw-loader!./forms.js';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/styles';
 import { Provider as ReduxProvider } from 'react-redux'
 import { Field, reduxForm, reducer as formReducer } from 'redux-form'
 
@@ -49,9 +47,11 @@ class ContactForm extends Component {
                 <pre>
                     {JSON.stringify(this.props.formState, null, 4)}
                 </pre>
-                <SyntaxHighlighter style={docco} language='javascript'>
-                  {source}
-                </SyntaxHighlighter>
+                <pre>
+                    <code className="language-javascript">
+                      {source}
+                    </code>
+                </pre>
             </div>
         );
     }
