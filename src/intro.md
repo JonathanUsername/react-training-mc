@@ -1,11 +1,9 @@
-# React Training
+# React
 
 ## Why use React?
 React Native
 Skills
 Speed
-
-https://www.sitepoint.com/react-higher-order-components/
 
 ## Basic Concepts
 

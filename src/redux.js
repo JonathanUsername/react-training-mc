@@ -21,6 +21,7 @@ const store = createStore(counter);
 // Here is our component. It is a functional, stateless component, just changing according to its props (and this page's source code, but ignore those shenanigans)
 var Counter = props => (
     <div>
+        <h1>Redux</h1>
         <div>
           Clicked: {props.count} times
           {' '}

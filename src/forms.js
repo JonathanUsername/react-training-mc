@@ -27,6 +27,7 @@ class ContactForm extends Component {
         const { handleSubmit, pristine, submitting } = this.props;
         return (
             <div>
+                <h1>Forms</h1>
                 <form onSubmit={handleSubmit(this.mySubmitHandler)}>
                     <div>
                         <label htmlFor="firstName">First Name</label>
