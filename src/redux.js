@@ -4,6 +4,7 @@ import { createStore, bindActionCreators } from 'redux';
 import source from '!!raw-loader!./redux.js';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/styles';
+import { Provider as ReduxProvider } from 'react-redux'
 
 const counter = (state = {count: 0}, action) => {
   switch (action.type) {
@@ -17,16 +18,10 @@ const counter = (state = {count: 0}, action) => {
 };
 
 // We need to export a store to supply as props to our provier
-export const store = createStore(counter);
+const store = createStore(counter);
 
-// The following component must be wrapped in a provider to provide the store via context like so:
-/*
-<ReduxProvider store={store}>
-    <Counter />
-</ReduxProvider>
-*/
-
-const Counter = props => (
+// Here is our component. It is a functional, stateless component, just changing according to its props (and this page's source code, but ignore those shenanigans)
+var Counter = props => (
     <div>
         <div>
           Clicked: {props.count} times
@@ -48,7 +43,7 @@ const Counter = props => (
     </div>
 );
 
-// Now we need to get that redux state (or the parts we're interested in) into the props of the component. To do that we use some helper functions.
+// Now we need to get that redux state (or the parts we're interested in) into the props of the component.
 
 // Pull the pertininent parts out of state and into props. This means we don't re-render unless that part of the state changes:
 const mapStateToProps = state => ({count: state.count, state});
@@ -75,9 +70,17 @@ const mapDispatchToProps = dispatch => ({ actions: bindActionCreators({increment
 // <button onClick={() => store.dispatch({ type: 'DECREMENT' })} />
 // And pass access to the store around - nasty.
 
-
-// Finally, the connect helper function allows us to use those 2 useful functions to wrap our component with.
-export default connect(
+// Finally, the connect helper function allows us to use those 2 useful functions to wrap our component with, reassigning to the Counter variable
+Counter = connect(
     mapStateToProps,
     mapDispatchToProps
 )(Counter);
+
+// Finally, in order to supply the store as context, we need to wrap our component in a Provider:
+var ReduxContainer = () => (
+    <ReduxProvider store={store}>
+        <Counter />
+    </ReduxProvider>
+);
+
+export default ReduxContainer;
