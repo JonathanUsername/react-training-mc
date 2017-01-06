@@ -35,7 +35,9 @@ var Counter = props => (
           </button>
         </div>
         <div>
-            Current state: {JSON.stringify(props.state)}
+            <pre>
+                {JSON.stringify(props.state)}
+            </pre>
             <SyntaxHighlighter style={docco} language='javascript'>
               {source}
             </SyntaxHighlighter>
