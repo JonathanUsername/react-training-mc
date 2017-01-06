@@ -16,11 +16,10 @@ const counter = (state = {count: 0}, action) => {
   }
 };
 
-// We could call actions with
-
+// We need to export a store to supply as props to our provier
 export const store = createStore(counter);
 
-// Must be wrapped in a provider to provide the store via context like so:
+// The following component must be wrapped in a provider to provide the store via context like so:
 /*
 <ReduxProvider store={store}>
     <Counter />
@@ -41,13 +40,15 @@ const Counter = props => (
           </button>
         </div>
         <div>
-            Current state: {JSON.stringify(props.state, null, 2)}
+            Current state: {JSON.stringify(props.state)}
             <SyntaxHighlighter style={docco} language='javascript'>
               {source}
             </SyntaxHighlighter>
         </div>
     </div>
 );
+
+// Now we need to get that redux state (or the parts we're interested in) into the props of the component. To do that we use some helper functions.
 
 // Pull the pertininent parts out of state and into props. This means we don't re-render unless that part of the state changes:
 const mapStateToProps = state => ({count: state.count, state});
@@ -74,6 +75,8 @@ const mapDispatchToProps = dispatch => ({ actions: bindActionCreators({increment
 // <button onClick={() => store.dispatch({ type: 'DECREMENT' })} />
 // And pass access to the store around - nasty.
 
+
+// Finally, the connect helper function allows us to use those 2 useful functions to wrap our component with.
 export default connect(
     mapStateToProps,
     mapDispatchToProps
