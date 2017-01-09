@@ -11,7 +11,7 @@ const reducers = {
 }
 // This allows us to have multiple reducers
 const reducer = combineReducers(reducers)
-const store = createStore(reducer)
+const store = createStore(reducer, window.devToolsExtension && window.devToolsExtension())
 
 
 // Here is our component, it has state.
